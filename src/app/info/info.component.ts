@@ -3,6 +3,7 @@ import { Pokemon } from '../pokemonT';
 import { results } from '../searchResults';
 import { PokemonService } from '../pokemon.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from '../modal/modal.component';
 
 
 
@@ -66,20 +67,20 @@ export class InfoComponent implements OnChanges {
 
 
 
-  constructor(private PokemonService: PokemonService,public activeModal: NgbActiveModal) { }
+  constructor(private modalService: NgbModal,private PokemonService: PokemonService,public activeModal: NgbActiveModal) { }
   ngOnChanges(changes: SimpleChanges): void {
     
   }
 
-//  open(card:any){
-//   console.log(card)
+  open(card:any){
+   console.log(card)
 
-//   const modalRef = this.modalService.open(NgbdModalContent);
-//   modalRef.componentInstance.name = card.name;
-//   modalRef.componentInstance.image = card.imageUrl;
+   const modalRef = this.modalService.open(ModalComponent);
+   modalRef.componentInstance.name = card.name;
+   modalRef.componentInstance.image = card.imageUrl;
 
 
-//  }
+  }
 }
 
 
