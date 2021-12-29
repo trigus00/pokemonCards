@@ -1,0 +1,21 @@
+
+       
+       
+         <!-- <div class="box1" style="text-align: center; border: white;"> -->
+             <div class="modal-header">
+                       <h4 style = "color: white" class="modal-title">Pokemon Info </h4>
+                       <button type="button" class="close" aria-label="Close" style = "color: white" (click)="activeModal.dismiss('Cross click')">
+                         <span aria-hidden="true">&times;</span>
+                      </button>
+                     </div>
+                
+                     <div class="modal-body" >
+                       <p style= "color: white">{{name}}!</p>
+                       <img src={{image}} alt="Pokemon card " style="justify-content: center;"/>
+                     </div>
+                
+                
+                     <div class="modal-footer">
+                       <button type="button" class="btn btn-outline-light" (click)="activeModal.close('Close click')">Close</button>
+                     </div>
+

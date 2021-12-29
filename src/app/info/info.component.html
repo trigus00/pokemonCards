@@ -1,6 +1,11 @@
-<p>info works!</p>
+<div class='pokemon_grid'>
 
-<div class="clicked" >
+    <div class="box" *ngFor="let card of item " >
+        <div class="box1" style="text-align: center; border: white;">
+            <!-- <img [src]="card.imageUrl" alt="Pokemon card " style="justify-content: center" > -->
+            <ngbd-modal-content [cards]= "card"></ngbd-modal-content> 
+            <!-- (click)="open(card)" -->
+        </div>
+    </div>
 
-    {{item}}
 </div>

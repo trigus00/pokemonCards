@@ -15,13 +15,16 @@ export class PokemonService {
 
   constructor(private https:HttpClient) { }
 
-  searchEnginer(id:string ){
-    return this.https.get(`https://pokemon-tcg-card-prices.p.rapidapi.com/${id}`)
+  searchEngine(id:string ){
+    return this.https.get(`https://pokemon-tcg-card-prices.p.rapidapi.com/card?id=${id}`)
   }
   getCard(search:string){
     return this.https.get(`https://pokemon-tcg-card-prices.p.rapidapi.com/card?name=${search}`, {'headers': this.hearders})
   }
   getAllCards(){
     return this.https.get(`https://api.pokemontcg.io/v2/cards/`,{'headers':this.hearders})
+  }
+  getCardName(search:string){
+    return this.https.get(` https://api.pokemontcg.io/v2/cards?q=name:${search}`, {'headers': this.hearders})
   }
 }

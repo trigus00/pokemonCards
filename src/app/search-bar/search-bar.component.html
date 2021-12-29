@@ -1,5 +1,9 @@
-<div>
-<p-dropdown [options]= "navMenu" [(ngModel)]= "selectedNav" optionLabel="name"></p-dropdown> 
-<!-- <button type = 'button'(click)= getCard()> Search </button> -->
-</div>
+<div routerLink="">
+    <div class="Search-bar ">
 
+        <input type='text' [(ngModel)]='search' placeholder="search over 151+ cards">
+        <button type='submit' (click)=getCard()> Search </button>
+
+    </div>
+</div>
+<app-info [item]="name"></app-info>

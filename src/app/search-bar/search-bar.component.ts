@@ -1,12 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { PokemonService } from '../pokemon.service';
-import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
 
-type Searchdirectory = {
-  id: number
-  name: string,
-}
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { PokemonService } from '../pokemon.service';
+// import { results } from '../searchResults';
+import { Pokemon } from '../pokemonT';
+
 
 
 @Component({
@@ -15,32 +12,70 @@ type Searchdirectory = {
   styleUrls: ['./search-bar.component.scss']
 })
 export class SearchBarComponent implements OnInit {
+  constructor(private PokemonService: PokemonService) { }
+  // @ViewChild('id')
+  // id!: ElementRef;
+  card:Array<any> = [];
+  cardList: Array<any> = [];
+  name:Array<Pokemon>=[]
+  clicked:boolean = false
   search: string = ''
 
-  navMenu  : Searchdirectory[];
-  selectedNav!: Searchdirectory; 
-  
-  
-  constructor(private PokemonService:PokemonService) {
-    this.navMenu = [
-      {id: 1, name:'Card'}, 
-      {id:2 , name:'Type'},
-      {id:3 , name:'Sets'}, 
-      {id:4 , name:'SuperType'}, 
-      {id:5, name:'Rarity'},
-    ];
-   }
 
   ngOnInit(): void {
+    
   }
+  // ngAfterViewInit() {
+  //   this.id.nativeElement.innerText;
+  // }
 
-  onSubmit(){
-  
-  }
   getCard(){
-    this.PokemonService.getCard(this.search)
-    .subscribe((response)=>{
-      console.log(response)
+    this.PokemonService.getCardName(this.search)
+      .subscribe((response:any)=>{
+        // console.log(response)
+        this.cardList.push(response.data)
+        this.cardList.forEach(card=>{
+          card.forEach((item: any) => {
+            // console.log(item)
+            const db: Pokemon ={
+              name: item.name,
+              imageUrl: item.images.small,
+              ability: item.abilities,
+              artist: item.artist,
+              attacks: [item.attacks],
+              convertedRetreatCost: item.convertedRetreatCost,
+              evolvesFrom: item.evolvesFrom,
+              hp: item.hp,
+              id: item.id,
+              nationalPokedexNumber: item[0],
+              number: item.number,
+              rarity: item.rarity,
+              resistances: item.resistances,
+              retreatCost: item.retreatCost,
+              set: item.set,
+              subtype: item.subtypes,
+              supertype: item.supertype,
+              types: item.types,
+              weaknesses: item.weaknesses,
+              tcgplayer: item.tcgplayer
+
+            }
+            this.name.push(db)
+          });
+          // console.log(this.name)
+        })
+       
     })
+   
+   this.clearSearch()
+  }
+ 
+
+  clearSearch(){
+    this.search = '';
+    this.name = [];
+    this.card = [];
+    this.cardList = [];
+   
   }
 }
