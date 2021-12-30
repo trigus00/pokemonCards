@@ -25,9 +25,7 @@ export class SearchBarComponent implements OnInit {
   ngOnInit(): void {
     
   }
-  // ngAfterViewInit() {
-  //   this.id.nativeElement.innerText;
-  // }
+ 
 
   getCard(){
     this.PokemonService.getCardName(this.search)

@@ -14,7 +14,13 @@ export class ModalComponent implements OnChanges {
   imageUrl:any
   name!: object;
   image!:object;
+  artist!: object;
   rarity!: object;
+  types!: any
+  tcglow!:string;
+  tcgmid!:string;
+  tcghigh!:string
+  updated!:any
 
   clicked:boolean = false; 
 
@@ -28,10 +34,11 @@ export class ModalComponent implements OnChanges {
   open(card:any){
     console.log(card)
     this.clicked = true
-  
     const modalRef = this.modalService.open(ModalComponent);
-    modalRef.componentInstance.name = card.name;
-    modalRef.componentInstance.image = card.imageUrl;
+    // modalRef.componentInstance.name = card.name;
+    // modalRef.componentInstance.image = card.imageUrl;
+    // modalRef.componentInstance.artist = card.artist;
+    // modalRef.componentInstance.types =card.types
   
   
    }
